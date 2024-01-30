@@ -247,16 +247,28 @@ function QuotationDetails(props: MyComponentProps) {
                   <td>{quotation?.costDetails?.numberOfUnitsCost}</td>
                 </tr>
               )}
+              {quotation?.costDetails?.serviceFrequencyCost > 0 && (
+                <tr>
+                  <th>Service Frequency Cost</th>
+                  <td>{quotation?.costDetails?.serviceFrequencyCost}</td>
+                </tr>
+              )}
               {quotation?.costDetails?.pickUpPrice > 0 && (
                 <tr>
-                  <th>Pickup Price</th>
-                  <td>{quotation?.costDetails?.pickUpPrice}</td>
+                  <th>Delivery Fee</th>
+                  <td>${quotation?.costDetails?.pickUpPrice}</td>
                 </tr>
               )}
               {quotation?.costDetailsSum > 0 && (
                 <tr>
-                  <th>Total Amount</th>
+                  <th>Monthly Invoice</th>
                   <td>${quotation?.costDetailsSum}</td>
+                </tr>
+              )}
+              {quotation?.costDetailsSum > 0 && (
+                <tr>
+                  <th>Initial Invoice</th>
+                  <td>${quotation?.costDetailsSum + quotation?.costDetails?.pickUpPrice}</td>
                 </tr>
               )}
             </tbody>
