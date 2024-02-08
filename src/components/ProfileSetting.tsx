@@ -117,6 +117,7 @@ function ProfileSetting(props: MyComponentProps) {
           (response) => {
             setLoading(false);
             if (response.data.status === 1) {
+              dispatch(setuser(response.data.data));
               toast.success("Profile updated successfully");
             } else {
               toast.error(response.data?.message);
@@ -238,17 +239,15 @@ function ProfileSetting(props: MyComponentProps) {
           </div>
           <div className="user--profile">
             <div className="user--image">
-              {prevImage ? (
+              {user.profile_picture ? (
                 <img
-                  src={`${process.env.REACT_APP_BASEURL}/${prevImage}`}
+                  src={`${process.env.REACT_APP_AWS_S3_URL}/${user.profile_picture}`}
                   alt="user_profile"
                 />
-              ) : currentImage ? (
-                <img src={currentImage} alt="user_profile" />
               ) : (
                 <img
                   src="https://bootdey.com/img/Content/avatar/avatar7.png"
-                  alt="Maxwell Admin"
+                  alt="user_profile"
                 />
               )}
               {/* <img src={require("../asstes/image/author1.png")} alt="" /> */}
