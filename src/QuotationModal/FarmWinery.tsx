@@ -43,7 +43,7 @@ interface quotationType {
 interface coordinatorType {
   name: string;
   email: string;
-  cellNumber: any;
+  mobile: any;
 }
 
 const FarmWinery: React.FC = () => {
@@ -64,7 +64,7 @@ const FarmWinery: React.FC = () => {
   const [coordinator, setCoordinator] = useState<coordinatorType>({
     name: "",
     email: "",
-    cellNumber: "",
+    mobile: "",
   });
 
   const [quotation, setQuotation] = useState<quotationType>({
@@ -207,7 +207,7 @@ const FarmWinery: React.FC = () => {
   };
 
   const resetForm = () => {
-    setCoordinator({ name: "", email: "", cellNumber: "" });
+    setCoordinator({ name: "", email: "", mobile: "" });
     setQuotation({
       maxWorkers: 10,
       weeklyHours: 40,
@@ -289,7 +289,7 @@ const FarmWinery: React.FC = () => {
       let validUsername = /^[A-Za-z\s]+$/;
       if (!validUsername.test(payload.name)) {
         toast.error("Name should only contain letters");
-      } else if (payload.cellNumber.length < 7) {
+      } else if (payload.mobile.length < 7) {
         toast.error("Phone number must be at least 7 digit");
       } else if (!isValid) {
         toast.error("Invalid email address");
@@ -360,9 +360,9 @@ const FarmWinery: React.FC = () => {
                     type="text"
                     min={0}
                     required
-                    value={coordinator.cellNumber}
+                    value={coordinator.mobile}
                     onChange={handleChangePhone}
-                    name="cellNumber"
+                    name="mobile"
                     placeholder="Enter phone"
                   />
                 </div>
@@ -674,7 +674,7 @@ const FarmWinery: React.FC = () => {
                   disabled={
                     !coordinator.name ||
                     !coordinator.email ||
-                    !coordinator.cellNumber ||
+                    !coordinator.mobile ||
                     !quotation.placementDate
                   }
                 >
