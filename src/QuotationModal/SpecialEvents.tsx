@@ -28,7 +28,7 @@ interface eventType {
 interface coordinatorType {
   name: string;
   email: string;
-  cellNumber: any;
+  mobile: any;
 }
 
 interface vipSectionType {
@@ -57,6 +57,7 @@ interface quotationType {
   handSanitizerPump: boolean;
   twiceWeeklyService: boolean;
   dateTillUse: string;
+  placementDate: string;
   placementAddress: string;
   maleWorkers: number;
   totalWorkers: number;
@@ -86,7 +87,7 @@ function SpecialEvents() {
   const [coordinator, setCoordinator] = useState<coordinatorType>({
     name: "",
     email: "",
-    cellNumber: "",
+    mobile: "",
   });
 
   const [vipSection, setVipSection] = useState<vipSectionType>({
@@ -115,6 +116,7 @@ function SpecialEvents() {
     handSanitizerPump: false,
     twiceWeeklyService: false,
     dateTillUse: "",
+    placementDate: "",
     placementAddress: "",
     maleWorkers: 0,
     totalWorkers: 0,
@@ -173,6 +175,10 @@ function SpecialEvents() {
     setEventDetails((prev) => ({
       ...prev,
       eventDate: formatDate,
+    }));
+    setQuotation((prev) => ({
+      ...prev,
+      placementDate: formatDate,
     }));
   };
 
@@ -263,7 +269,7 @@ function SpecialEvents() {
   };
 
   const resetForm = () => {
-    setCoordinator({ name: "", email: "", cellNumber: "" });
+    setCoordinator({ name: "", email: "", mobile: "" });
     setQuotation({
       maxWorkers: 10,
       weeklyHours: 40,
@@ -284,6 +290,7 @@ function SpecialEvents() {
       handSanitizerPump: false,
       twiceWeeklyService: false,
       dateTillUse: "",
+      placementDate: "",
       placementAddress: "",
       maleWorkers: 0,
       totalWorkers: 0,
@@ -353,7 +360,7 @@ function SpecialEvents() {
       let validUsername = /^[A-Za-z\s]+$/;
       if (!validUsername.test(payload.name)) {
         toast.error("Name should only contain letters");
-      } else if (payload.cellNumber.length < 7) {
+      } else if (payload.mobile.length < 7) {
         toast.error("Phone number must be at least 7 digit");
       } else if (!isValid) {
         toast.error("Invalid email address");
@@ -424,9 +431,9 @@ function SpecialEvents() {
                     type="text"
                     min={0}
                     required
-                    value={coordinator.cellNumber}
+                    value={coordinator.mobile}
                     onChange={handleChangePhone}
-                    name="cellNumber"
+                    name="mobile"
                     placeholder="Enter phone"
                   />
                 </div>
@@ -821,7 +828,7 @@ function SpecialEvents() {
                   disabled={
                     !coordinator.name ||
                     !coordinator.email ||
-                    !coordinator.cellNumber ||
+                    !coordinator.mobile ||
                     !eventDetails.eventName ||
                     !eventDetails.eventDate ||
                     !eventDetails.eventType

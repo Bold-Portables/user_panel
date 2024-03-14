@@ -50,7 +50,7 @@ interface quotationType {
 interface coordinatorType {
   name: string;
   email: string;
-  cellNumber: any;
+  mobile: any;
 }
 
 const RecreationalSite: React.FC = () => {
@@ -71,7 +71,7 @@ const RecreationalSite: React.FC = () => {
   const [coordinator, setCoordinator] = useState<coordinatorType>({
     name: "",
     email: "",
-    cellNumber: "",
+    mobile: "",
   });
 
   const [quotation, setQuotation] = useState<quotationType>({
@@ -205,7 +205,7 @@ const RecreationalSite: React.FC = () => {
   };
 
   const resetForm = () => {
-    setCoordinator({ name: "", email: "", cellNumber: "" });
+    setCoordinator({ name: "", email: "", mobile: "" });
     setQuotation({
       maxWorkers: 10,
       weeklyHours: 40,
@@ -286,7 +286,7 @@ const RecreationalSite: React.FC = () => {
       let validUsername = /^[A-Za-z\s]+$/;
       if (!validUsername.test(payload.name)) {
         toast.error("Name should only contain letters");
-      } else if (payload.cellNumber.length < 7) {
+      } else if (payload.mobile.length < 7) {
         toast.error("Phone number must be at least 7 digit");
       } else if (!isValid) {
         toast.error("Invalid email address");
@@ -360,9 +360,9 @@ const RecreationalSite: React.FC = () => {
                     minLength={minUserPhoneLength}
                     maxLength={maxUserPhoneLength}
                     required
-                    value={coordinator.cellNumber}
+                    value={coordinator.mobile}
                     onChange={handleChangePhone}
-                    name="cellNumber"
+                    name="mobile"
                     placeholder="Enter phone"
                   />
                 </div>
@@ -662,7 +662,7 @@ like twice weekly service? <span className="required"></span>
                   disabled={
                     !coordinator.name ||
                     !coordinator.email ||
-                    !coordinator.cellNumber ||
+                    !coordinator.mobile ||
                     !quotation.placementDate
                   }
                 >
