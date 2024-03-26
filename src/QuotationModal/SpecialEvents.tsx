@@ -480,7 +480,7 @@ function SpecialEvents() {
                 </div>
                 <div className="form--group">
                   <label htmlFor="name">
-                    Many construction sites are offering gender specific
+                    Many sites are offering gender specific
                     toilets. Would you like to offer this as well?
                     <span className="required"></span>
                   </label>
@@ -496,7 +496,7 @@ function SpecialEvents() {
                 {quotation.designatedWorkers && (
                   <div className="form--group">
                     <label htmlFor="name">
-                    Worker Gender (Male/Female/Both)<span className="required"></span>
+                    User Gender (Male/Female/Both)<span className="required"></span>
                     </label>
                     <select
                       name="workerTypes"
@@ -516,8 +516,8 @@ function SpecialEvents() {
                 {quotation.workerTypes === "male" ||
                 quotation.workerTypes === "both" ? (
                   <div className="form--group">
-                    <label htmlFor="name">
-                      How many male workers will be on site?
+                    <label htmlFor="name">{`
+                      How many ${quotation.designatedWorkers ? 'male users' : 'users'} will be on site?`}
                       <span className="required"></span>
                     </label>
                     <input
@@ -535,7 +535,7 @@ function SpecialEvents() {
                 {quotation.designatedWorkers === true && (quotation.workerTypes === "female" || quotation.workerTypes === "both") ? (
                   <div className="form--group">
                     <label htmlFor="name">
-                      How many female workers will be on site?
+                      How many female users will be on site?
                       <span className="required"></span>
                     </label>
                     <input
@@ -553,7 +553,7 @@ function SpecialEvents() {
                 {quotation.designatedWorkers === true && (quotation.workerTypes === "female" || quotation.workerTypes === "both") ? (
                   <div className="form--group">
                     <label htmlFor="name">
-                      Do you need a separate toilet for female workers?
+                      Do you need a separate toilet for female users?
                       <span className="required"></span>
                     </label>
                     <select
@@ -572,7 +572,7 @@ function SpecialEvents() {
                 quotation.workerTypes === "both" ? (
                   <div className={`form--group ${quotation.designatedWorkers === false || (quotation.designatedWorkers === true && quotation.workerTypes === "female") ? 'right--active--total' : ''}`}>
                       <div className="total_div">
-                      <label htmlFor="name">Total Workers</label>
+                      <label htmlFor="name">Total Users</label>
                       <input
                         type="text"
                         name="totalWorkers"
@@ -592,7 +592,7 @@ function SpecialEvents() {
               <React.Fragment>
                 <div className="form--group">
                   <label htmlFor="name">
-                    What are the average hours for each worker per week?{" "}
+                    What are the average hours for each worker per week if applicable?{" "}
                     <span className="required">*</span>
                   </label>
                   <input
