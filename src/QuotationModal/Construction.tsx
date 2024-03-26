@@ -446,8 +446,8 @@ const Construction: React.FC = () => {
                 {quotation.workerTypes === "male" ||
                   quotation.workerTypes === "both" ? (
                   <div className="form--group">
-                    <label htmlFor="name">
-                      How many male workers will be on site?
+                    <label htmlFor="name">{`
+                      How many ${quotation.designatedWorkers ? 'male workers' : 'workers'} will be on site?`}
                       <span className="required"></span>
                     </label>
                     <input
@@ -522,7 +522,7 @@ const Construction: React.FC = () => {
               <React.Fragment>
                 <div className="form--group">
                   <label htmlFor="name">
-                    What are the average hours for each worker per week?{" "}
+                    What are the average hours for each worker per week if applicable?{" "}
                     <span className="required">*</span>
                   </label>
                   <input
